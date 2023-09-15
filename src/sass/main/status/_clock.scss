@@ -1,0 +1,25 @@
+@use "../../ui/variables" as *;
+.clock {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin-right: -6px;
+}
+
+.clock p {
+    font-size: 41px;
+    letter-spacing: 3px;
+    font-family: DIN;
+    color: #252525;
+}
+
+.time {
+    font-weight: 500;
+}
+
+.dayornight {
+    font-size: 30px !important;
+    font-weight: bold;
+    transform: scale(1, 0.9);
+}

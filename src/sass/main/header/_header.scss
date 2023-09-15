@@ -1,0 +1,29 @@
+@use "../../ui/variables" as *;
+
+.header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $background-color-primary;
+    height: 133px;
+}
+
+.header-info {
+    position: absolute;
+    left: 97.5px;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    svg {
+        width: 73px;
+        fill: $ui-black !important; 
+    }
+    p {
+        margin-left: 25px;
+        font-size: 43px;
+        font-weight: bolder;
+        color: $ui-black;
+    }
+}

@@ -1,0 +1,55 @@
+@use "../../ui/variables" as *;
+
+.profile-picture {
+    width: 100%;
+    height: 100%;
+}
+
+.profiles {
+    margin-left: 94px;
+    max-height: 84px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container {
+    position: relative;
+     p {
+        letter-spacing: 1px;
+        position: absolute;
+        font-size: 32px;
+        margin-top: 15px;
+        left: -28px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+}
+
+.profile {
+    position: relative;
+    background-color: white;
+    width: 82px;
+    height: 82px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    margin-right: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 0px 4px #fff,
+                0px 0px 10px rgba(0, 0, 0, 0),
+                0px 0px 0px 12px rgba(0, 183, 193, 0),
+                0px 0px 15px $shadow-strong;
+
+    img {
+        border-radius: 50%;
+    }
+}
+
+// FIX : Fix The border width
+.profile-selected-outer-border {
+    inset: -11px;
+    border-radius: 50% !important;
+    opacity: 0;
+}

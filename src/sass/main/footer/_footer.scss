@@ -1,0 +1,21 @@
+@use "../../ui/variables" as *;
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 110px;
+    width: 100%;
+    background: $background-color-primary;
+    opacity: 0;
+}
+
+.controller {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 103px;
+}

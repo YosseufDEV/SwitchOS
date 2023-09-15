@@ -1,0 +1,25 @@
+@use "../../ui/variables" as *;
+
+.players-indicator-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.player-indicator-active {
+    background-color: #99e708 !important;
+    width: 14px !important;
+}
+
+.player-indicator-box {
+    border: none;
+    width: 10px;
+    aspect-ratio: 1/1;
+    background-color: #afafaf;
+    margin: {
+        left: 3px;
+        right: 3px;
+        bottom: 8px;
+    };
+}

@@ -1,0 +1,113 @@
+@use "./variables" as *;
+
+.prompt-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 10, 0.6);
+    z-index: 1000;
+}
+
+.prompt-popup {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: $background-color-primary;
+    border-radius: 7px;
+    margin: auto;
+    width: 60%;
+    height: 50%;
+    z-index: 1001;
+    p {
+        font-size: 38px;
+        font-weight: 600;
+    }
+}
+
+.prompt-message {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 103px;
+    > h1, > p {
+        color: $ui-black;
+        font-size: 38px;
+        font-weight: normal;
+    }
+    > p {
+        font-weight: bold;
+        margin-top: 5px;
+        font-size: 15px;
+    }
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 214px;
+}
+
+%prompt-row {
+    position: relative;
+    width: 100%;
+    height: 105px;
+    background: $background-color-primary;
+    p {
+        color: #495DD6;
+    }
+    z-index: 1002;
+}
+
+.prompt-first-option-row {
+    @extend %prompt-row;
+}
+
+.prompt-final-options-row {
+    @extend %prompt-row;
+    display: flex;
+    flex-direction: row;
+    bottom: 0;
+    margin-bottom: 5px;
+}
+
+.prompt-option {
+    position: relative;
+    background: $background-color-primary !important;
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected-row {
+    z-index: 1003;
+}
+
+.unselected-prompt-option {
+    z-index: -10;
+}
+
+.prompt-selected-outer-border {
+    border-radius: 7px;
+    &::before {
+        position: absolute;
+        content: "";
+        border-radius: 12px;
+        inset: -8px;
+        background: $selected-border-state-0;
+        z-index: -1 !important;
+        box-shadow: 0 2px 5px $shadow;
+    }
+}
+

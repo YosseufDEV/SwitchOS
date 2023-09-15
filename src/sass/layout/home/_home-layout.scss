@@ -1,0 +1,35 @@
+@use "../../ui/variables" as *;
+
+.wrapper {
+    position: absolute;
+    inset: 0;
+    transform-origin: center;
+}
+
+%absolute {
+    position: absolute;
+}
+
+.top-part {
+    @extend %absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 27%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.middle-part {
+    @extend %absolute;
+    top: 27%;
+}
+
+.bottom-part { 
+    @extend %absolute;
+    top: 63%;
+    height: 37%;
+    width: 100%;
+} 
+

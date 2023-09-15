@@ -1,0 +1,47 @@
+@use "../../ui/variables" as *;
+.status {
+    margin-left: auto;
+    margin-right: 104px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.battery {
+    margin-left: 38px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    > p {
+        margin-right: 10px;
+        font-family: DIN;
+        font-weight: 500;
+        font-size: 40px;
+        color: $ui-black;
+    }
+    .percentage-mark {
+        font-family: DIN;
+        font-weight: 500;
+        font-size: 20px;
+        color: $ui-black;
+    }
+}
+
+.battery-percentage {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    > p {
+        font-family: DIN;
+        font-weight: 500;
+        font-size: 40px;
+        color: $ui-black;
+    }
+    .percentage-mark {
+        margin-right: 10px;
+        font-family: DIN;
+        font-weight: normal;
+        font-size: 27px;
+        color: $ui-black;
+    }
+}

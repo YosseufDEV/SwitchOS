@@ -1,0 +1,33 @@
+@use "./ui/variables" as *;
+
+.selected-outer-border {
+    transform-style: preserve-3d;
+    transform-origin: center;
+    transform: translateZ(-1em);
+    position: absolute;
+    background: $selected-border-state-0;
+    z-index: -1;
+    box-shadow: 0px 5px 5px $shadow;
+}
+
+.icon-navigation-started-border {
+    &::after {
+        content: "";
+        position: absolute;
+        background: #C8CACA;
+        border-radius: 50%;
+        z-index: -2;
+    }
+}
+
+.home-icon-navigation-started-border {
+    &::after {
+        position: absolute;
+        content: "";
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 50%;
+        opacity: 0.99;
+    }
+}
+
+

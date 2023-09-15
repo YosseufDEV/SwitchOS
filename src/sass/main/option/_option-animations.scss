@@ -1,0 +1,70 @@
+svg {
+    shape-rendering: geometricPrecision;
+}
+
+.option-selected-animation-outline {
+    animation:  option-selected-animation-outline 350ms linear 60ms forwards;
+}
+
+.option-selected-animation-color {
+    animation:  option-selected-animation-color 350ms linear forwards;
+}
+
+.selected-circle {
+    position: absolute;
+    width: calc( 100% + 5px);
+    height: calc( 100% + 5px);
+    border-radius: 50%;
+    z-index: -1; 
+}
+
+.option-selected {
+    outline: 7px solid #47C9C0;
+    border-radius: 50%;
+}
+
+.option-unselected {
+    animation: option-unselected-animation 60ms linear;
+}
+
+@keyframes option-selected-animation-color {
+    0% {
+        background: #FDFDFF;
+    }
+
+    50% {
+        background: #C8CACA;
+    }
+
+    100% {
+        background: #FDFDFF;
+    }
+}
+
+@keyframes option-selected-animation-outline {
+    0% {
+        outline: 0px solid #C8CACA; 
+        opacity: 100%;
+    }
+    50% {
+        outline: 8px solid #C8CACA; 
+        opacity: 75%;
+    }
+
+    100% {
+        outline: 20px solid #C8CACA; 
+        opacity: 0%;
+    }
+}
+
+@keyframes option-unselected-animation {
+    0% {
+        outline: 7px solid rgba(71, 201, 192, 1);
+    }
+    50% {
+        outline: 4px solid rgba(71, 201, 192, 0.2);
+    }
+    100% {
+        outline: 0px solid rgba(71, 201, 192, 0);
+    }
+}

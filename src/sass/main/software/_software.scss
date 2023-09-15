@@ -1,0 +1,105 @@
+@use "../../ui/variables" as *;
+
+.software-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 160px ; // INFO : In order to focus the last selected game move -78px
+    width: 10000px;
+    height: 100%;
+    background-color: var(--background-color-primary);
+}
+
+.software {
+    position: relative;
+    transform-style: preserve-3d;
+    width: 384px;
+    height: 384px;
+    box-shadow: 0px 0px 10px $shadow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 21px;
+}
+
+.software::after {
+    transform: translateZ(-1em);
+}
+
+.software-title-container {
+    position: absolute;
+    display: flex;
+    top: calc(-1*(40 + 36 + 9)) + px;
+    left: -34px;
+    overflow: hidden;
+    max-height: 60px;
+    max-width: 708px;
+    opacity: 0;
+    p {
+        margin: 0 {
+            right: 60px;
+        }
+        font: {
+            size: 40px;
+            family: "Nintendo Switch";
+            weight: 600;
+        }
+        color: $border-and-font-color; 
+        white-space: nowrap;
+    }
+}
+
+%fade-parent {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 10px;
+    z-index: 5000;
+}
+
+.fade-right {
+    @extend %fade-parent;
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0), $background-color-primary);
+    right: 0;
+}
+
+.fade-left {
+    @extend %fade-parent;
+    background: -webkit-linear-gradient(right, rgba(255,255,255,0), $background-color-primary);;
+}
+
+.software-selected-inner-border {
+    box-shadow: 0px 0px 0px 5.5px rgba(245, 245, 247, 0),
+                0px 0px 15px rgba(0, 0, 0, 0);
+}
+
+.software-selected-outer-border {
+    opacity: 0;
+    inset:  -14px;
+    border-radius: 5px;
+}
+
+.software-selected-outer-border-empty {
+    outline: 5.5px solid $background-color-primary;
+    outline-offset: -15px;
+    border-radius: 5px;
+    inset: calc(-1 * (5.5px + 9.5px) );
+}
+
+.software-placeholder {
+    background: #EDEDED;
+    outline-style: solid;
+    outline-width: 5px;
+    outline-offset: -5px;
+    outline-color: #f5f5f7;
+}
+
+.software-cover {
+    position: absolute;
+    z-index: 600;
+    width: 100%;
+    aspect-ratio: 1/1;
+}

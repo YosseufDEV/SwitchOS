@@ -1,0 +1,171 @@
+.gallery-icon-animation {
+    animation-name: gallery-pressed-animation-icon;
+    animation-duration: 110ms;
+    animation-fill-mode: forwards;
+}
+
+.gallery-frame-animation {
+    animation-name: gallery-pressed-animation-frame;
+    animation-duration: 110ms;
+    animation-fill-mode: forwards;
+}
+
+.news-animation {
+    animation-name: news-pressed-animation;
+    animation-duration: 110ms;
+    animation-fill-mode: forwards;
+}
+
+.shop-animation {
+    animation-name: shop-icon-pressed;
+    animation-duration: 160ms;
+    animation-fill-mode: forwards;
+}
+
+.settings-animation {
+    animation-name: settings-pressed-animation-1;
+    animation-duration: 140ms;
+}
+
+@keyframes gallery-pressed-animation-icon {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-8deg);
+    } 
+    75% {
+        transform: rotate(-9deg);
+    }
+    100% {
+        transform: rotate(-10deg);
+    }
+}
+
+@keyframes gallery-pressed-animation-frame {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(7deg);
+    }
+    50% {
+        transform: rotate(8deg);
+    } 
+    75% {
+        transform: rotate(9deg);
+    }
+    100% {
+        transform: rotate(10deg);
+    }
+}
+
+@keyframes news-pressed-animation {
+    0% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(0.8, 0.8);
+    }
+    75% {
+        transform: scale(1, 1.11);
+    }
+    100% {
+        transform: scale(1.15, 1);
+    }
+    80% {
+        transform: scale(0.9, 1);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+
+}
+
+@keyframes border-animation {
+    0% {
+        border-image: var(--border-active-state-0) 1;
+    }
+
+    50% {
+        border-image: var(--border-active-state-1) 1; 
+    }
+
+    100% {
+        border-image: var(--border-active-state-0) 1;
+    }
+
+}
+
+@keyframes gallery-pressed-animation-part-1 {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-8deg);
+    } 
+    75% {
+        transform: rotate(-9deg);
+    }
+    100% {
+        transform: rotate(-10deg);
+    }
+}
+
+@keyframes shop-icon-pressed {
+    0% {
+       translate: 0 0;
+    }
+    20% {
+       translate: 0 -7.5px; 
+    }
+    40% {
+        translate: 0 -15px;
+    }
+    60% {
+        translate: 0 -7.5px;
+    }
+    80% {
+        translate: 0 -2px
+    }
+    100% {
+        translate: 0 0;
+    }
+}
+
+@keyframes settings-pressed-animation-1 {
+    $a_x: 0px;
+    $a_y: 3px;
+    $a_r: 2deg;
+
+    $b_x: -5px;
+    $b_y: -7px;
+    $b_r: -15deg;
+
+    $c_x: 5px;
+    $c_y: 5px;
+    $c_r: 0deg;
+
+    $d_x: 1px;
+    $d_y: 0px;
+    $d_r: 0deg;
+    
+    0% {
+        transform: translate(0, 0);
+    }
+    20% {
+        transform: translate($a_x, $a_y) rotate($a_r);
+    }
+    20% {
+        transform: translate($b_x, $b_y) rotate($b_r);
+    }
+    60% {
+        transform: translate($c_x, $c_y) rotate($c_r);
+    }
+    80% {
+        transform: translate(1px, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}

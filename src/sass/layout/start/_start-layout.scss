@@ -1,0 +1,66 @@
+@use "../../ui/variables" as *;
+.start-wrapper {
+    display: flex;
+    flex-direction: row;
+    background-color: $background-color-primary;
+    position: absolute;
+    transform-origin: center;
+    inset: 0;
+}
+
+.news-area {
+    width: 570px;
+    height: 100%;
+    background: rgb(22, 22, 22);
+}
+
+.main-area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: calc( 100% - 570px );
+}
+
+.main-top-area {
+    position: absolute;
+    top: 68px;
+    right: 0;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.home-icon-container {
+    position: relative;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 220px;
+    margin-bottom: 25px;
+    p {
+        white-space:  nowrap;
+        color: $ui-black;
+        font-size: 35px;
+        font-weight: 600;
+    }
+}
+
+.news-plus-minus-icon {
+    width: 190px;
+    #slash {
+        fill: #4D4D4D;
+    }
+    #minus, #plus {
+        fill: $background-color-primary;
+    }
+}
+
+.continue-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

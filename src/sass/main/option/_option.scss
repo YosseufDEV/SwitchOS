@@ -1,0 +1,81 @@
+@use "../../ui/variables" as *;
+
+.options-list {
+    position: relative;
+    margin: auto {
+       top: 75px;
+       bottom: 86px;
+    }
+
+    height: 128px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--background-color-primary);
+}
+
+.option-selected-outer-border {
+    opacity: 0;
+    border-radius: 50%;
+    inset: -7px;
+    box-shadow: 0px 2.5px 10px $shadow-medium;
+    background: $selected-border-state-0;
+    transform-style: preserve-3d;
+    transform: translateZ(-1em);
+    z-index: -1;
+}
+
+.option-navigation-started-border {
+    &::after {
+        content: "";
+        position: absolute;
+        background: #C8CACA;
+        border-radius: 50%;
+        z-index: -2;
+    }
+}
+
+
+.option {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: rgba(253, 253, 255, 1);
+    box-shadow: 0px 0px 5px $shadow;
+    margin-right: 16px;
+    margin-left: 16px;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > p {
+        opacity: 0;
+        font: {
+            size: 32px;
+            weight: bold;
+        }
+        position: absolute;
+        bottom: -60px;
+        letter-spacing: 1px;
+        white-space: nowrap;
+    }
+}
+
+.option::after {
+    transform: translateZ(-1em);
+}
+
+.option-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // filter: brightness(120%);
+    // width: 62px !important;
+}
+
+.gallery {
+    width: 60%;
+}
+

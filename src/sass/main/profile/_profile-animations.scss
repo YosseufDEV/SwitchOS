@@ -1,0 +1,35 @@
+.profile-select-animation {
+    animation: select-profile-animation 30ms forwards;
+}
+
+.profile-unselect-animation {
+    animation: unselect-profile-animation 30ms forwards;
+}
+
+@keyframes select-profile-animation {
+    0% {
+        box-shadow: 0px 0px 0px 4px #fff,
+                    0px 0px 10px rgba(0, 0, 0, 0),
+                    0px 0px 0px 12px rgba(0, 183, 193, 0),
+                    0px 0px 20px #e5e5e5;
+    }
+
+    100% {
+        box-shadow: 0px 0px 0px 4px #fff,
+                    0px 0px 10px rgba(0, 0, 0, 1),
+                    0px 0px 0px 12px rgba(0, 183, 193, 1),
+                    0px 0px 20px #e5e5e5;
+        width: 89px;
+        height: 89px;
+    }
+}
+
+@keyframes unselect-profile-animation {
+    100% {
+        box-shadow: 0px 0px 0px 4px #fff,
+                    0px 0px 10px rgba(0, 0, 0, 0),
+                    0px 0px 0px 10px rgba(0, 183, 193, 0),
+                    0px 0px 20px #e5e5e5;
+    }
+}
+
