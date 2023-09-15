@@ -12,6 +12,7 @@ and written in the following style:
 ### Functions and Classes
 
 #### Always write the name in PascalCase
+```
     function ShortName() {
         ...
     }
@@ -19,34 +20,45 @@ and written in the following style:
     class ShortName {
         ...
     }
+```
 
 #### Use descriptive names
 Don't do this:
+```
     function returnYear() {
         return 2023
     }
+```
 Do this:
+```
     function returnCurrentYear() {
         return 2023
     }
+```
 
 ### If/For/While Statements 
 
 #### Always use the curly braces and don't put it on the same line as the keyword
+```
 if(true) 
 {
     ShortName();
 }
+```
 
+```
 while(true)
 {
     let shortName = new ShortName();
 }
+```
 
+```
 for(let i = 0; i < 10; i++)
 {
     ShortName(i);
 }
+```
 
 #### No Magic values that only have meaning to you
 
