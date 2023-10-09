@@ -1,5 +1,5 @@
 import PlayersIndicator, { PlayersAmount } from "../Footer/PlayersIndicator";
-import ControllerIcon from "../../../public/assets/icons/ui/Pro_controller.svg" 
+import ControllerIcon from "../../../public/assets/icons/ui/Pro_Controller.svg" 
 
 function Controller() {
     return (
