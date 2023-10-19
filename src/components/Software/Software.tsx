@@ -21,7 +21,7 @@ function setupSoftwareTitle(softwareTitle: HTMLParagraphElement,
     if(softwareTitleClone) 
     {
         setupSoftwareTitleFade(softwareTitleContainer);
-        const marqueeTitleTimeline = setupSoftwareTitleMarqueeAnimation(software, softwareTitle, softwareTitleClone);;
+        const marqueeTitleTimeline = setupSoftwareTitleMarqueeAnimation(software, softwareTitle, softwareTitleClone);
         return marqueeTitleTimeline;
     }
     else

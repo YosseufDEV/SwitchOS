@@ -2,7 +2,6 @@ import { createEffect } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
 import { gsap, Linear } from "gsap";
-import { CSSProperties } from "react";
 import CSSRulePlugin from "gsap/CSSRulePlugin";
 
 import playAudio, { AudioEvents } from "../SoundPlayer/SoundPlayer";
@@ -26,7 +25,7 @@ type OptionNaivgationAnimationColorAndAudioToPlay =
 
 interface Props {
     iconType: OptionIconTypes,
-    iconStyle?: CSSProperties,
+    iconStyle?: any,
     fillColor?: string,
     optionName?: string,
     IconSvg: any,

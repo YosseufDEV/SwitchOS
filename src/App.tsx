@@ -39,7 +39,7 @@ function afterNavigationFunction() {
     const activeElement = navigationArray[activeIndex[1]][activeIndex[0]]
 
     setActiveElement(activeElement);
-    playAudio(AudioEvents.SELECT_GENERAL);
+    // playAudio(AudioEvents.SELECT_GENERAL);
 }
 
 function afterConfirmationFunction() {
