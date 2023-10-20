@@ -30,36 +30,37 @@ const [activeElementType, setActiveElementType] = createSignal<ActiveElementType
 const [activePage, setActivePage] = createSignal<HTMLDivElement | null>();
 const [theme, setTheme] = createSignal<Themes>(Themes.THEME_LIGHT);
 
-const navigator = new Navigator(); 
-navigator.freeze();
-
-function afterNavigationFunction() {
-    const activeIndex = navigator.activeElementIndexInArray;
-    const navigationArray = navigator.navigationArray;
-    const activeElement = navigationArray[activeIndex[1]][activeIndex[0]]
-
-    setActiveElement(activeElement);
-    // playAudio(AudioEvents.SELECT_GENERAL);
-}
-
-function afterConfirmationFunction() {
-    switch(activeElementType()) {
-        case ActiveElementType.ELEMENT_OPTION: {
-
-        }
-    }
-}
-
-navigator.attachAfterNavigationFunction(afterNavigationFunction);
-navigator.attachAfterConfirmationFunction()
+let navigator;
 
 const App: Component = ()  => {
     createEffect(() => {
+        const tmpNavigator = new Navigator(); 
+        tmpNavigator.freeze();
+
+        function afterNavigationFunction() {
+            const activeIndex = tmpNavigator.activeElementIndexInArray;
+            const navigationArray = tmpNavigator.navigationArray;
+            const activeElement = navigationArray[activeIndex[1]][activeIndex[0]]
+
+            setActiveElement(activeElement);
+            // playAudio(AudioEvents.SELECT_GENERAL);
+        }
+
+        function afterConfirmationFunction() {
+            switch(activeElementType()) {
+                case ActiveElementType.ELEMENT_OPTION: {
+
+                }
+            }
+        }
+
+        tmpNavigator.attachAfterNavigationFunction(afterNavigationFunction);
         if(useLocation().pathname != "/")
         {
             initializeSelectedItemBorderAnimation();
-            console.log(navigator);
+            console.log(tmpNavigator);
         }
+        navigator = tmpNavigator;
     })
 
     return (

@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { activeElement, ActiveElementType, activeElementType } from "../../App";
 import Software from "../Software/Software";
 
-const [softwareList, setSoftwareList] = createSignal<Node[]>()
+const [softwareList, setSoftwareList] = createSignal<HTMLDivElement[]>()
 
 const pixelsToMove = 405;
 let currentSoftwareIndexIncrementing = 1;
@@ -27,24 +27,18 @@ function getSoftwareInFocus(softwareRef: HTMLDivElement, softwareList: HTMLDivEl
 
     if(isOutOfScreenRightBounds) 
     {
-        if(incrementedElements.includes(softwareRef)) return;
         currentSoftwareIndexIncrementingPTR = currentSoftwareIndexIncrementing;
         const nextSoftwarePosition = -1 * (currentSoftwareIndexIncrementing++ * pixelsToMove) 
-        console.log(nextSoftwarePosition);
+
         gsap.to(softwareList, 
             { 
                 translateX: nextSoftwarePosition, 
                 duration: animationSpeedInSeconds 
             })
-        incrementedElements.push(softwareRef);
-        const decrementedElementsArrayWithoutIncrementedElement = decrementedElements
-                                                                    .filter((el) => el != softwareRef)
-        decrementedElements = decrementedElementsArrayWithoutIncrementedElement;
     }
 
     else if(isOutOfScreenLeftBounds)
     {
-        if(decrementedElements.includes(softwareRef)) return;
         currentSoftwareIndexIncrementing = 1;
         const currentLocation = currentSoftwareIndexIncrementingPTR*pixelsToMove;
         const decrementedBy = pixelsToMove * currentSoftwareIndexDecrementing++;
@@ -55,15 +49,7 @@ function getSoftwareInFocus(softwareRef: HTMLDivElement, softwareList: HTMLDivEl
                 translateX: previousElementLocation, 
                 duration: animationSpeedInSeconds 
             })
-
-        decrementedElements.push(softwareRef);
-        const incrementedElementsArrayWithoutTheDecrementedElement = incrementedElements
-                                                                        .filter((el) => el == softwareRef)
-        console.log(incrementedElementsArrayWithoutTheDecrementedElement);
-        incrementedElements = incrementedElementsArrayWithoutTheDecrementedElement;
     }
-
-    console.log(incrementedElements);
 
     if(softwareRef == softwareList.children[0])
     {
@@ -75,16 +61,17 @@ function getSoftwareInFocus(softwareRef: HTMLDivElement, softwareList: HTMLDivEl
 
 function SoftwareList() {
     let softwareListRef: HTMLDivElement;
+    let selectedElement: HTMLDivElement;
+
     createEffect(() => {
-        const activeElementEL = activeElement();
-        if(activeElementType() == ActiveElementType.ELEMENT_SOFTWARE || 
-           activeElementType() == ActiveElementType.ELEMENT_SOFTWARE_PLACEHOLDER && 
-           activeElementEL != null)
+        const isActiveElementInList:boolean = Array.from(softwareListRef.children).includes(activeElement());
+
+        if(isActiveElementInList)
         {
-            console.log(activeElementEL?.getClientRects());
-            getSoftwareInFocus(activeElementEL, softwareListRef);
+            console.log(true);
+            getSoftwareInFocus(activeElement(), softwareListRef);
         }
-        setSoftwareList(softwareListRef.childNodes) 
+        setSoftwareList(softwareListRef.children) 
     })
 
     return (
@@ -94,7 +81,7 @@ function SoftwareList() {
             <Software softwareTitle="Final Fantasy XVI" coverSrc="/assets/covers/final_fantasyvi-cover.png" />
             <Software softwareTitle="Nier Automata" coverSrc="/assets/covers/nier_automata-cover.png" />
             <Software softwareTitle="Assassin's Creed Mirage" coverSrc="/assets/covers/assassins_creed-cover.png" />
-            <Software empty />
+            <Software softwareTitle="Legend of Zelda: Tears of The Kingdom" coverSrc="/assets/covers/zelda_totk-cover.jpg" />
             <Software empty />
             <Software empty />
             <Software empty />
