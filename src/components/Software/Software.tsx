@@ -5,11 +5,15 @@ import CSSRulePlugin from "gsap/CSSRulePlugin"
 
 import { activeElement, setActiveElement, setActiveElementType, ActiveElementType} from "../../App"
 import { hideElementAnimated, showElementAnimated } from "../Animations/GeneralAnimations"
+import Profile from "../Profile/Profile"
+import ButtonIcon from "../ButtonIcon/ButtonIcon"
+import { colorSchemeLight } from "../colors"
 
 interface Props {
     coverSrc?: string,
     softwareTitle?: string,
-    empty?: boolean
+    empty?: boolean,
+    testingComponent?: boolean,
 }
 
 gsap.registerPlugin(CSSRulePlugin)
@@ -89,10 +93,12 @@ function softwareTitleMarqueeAnimation(
 }
 
 function selectSoftware(softwareRef: HTMLDivElement, 
-                    borderRef: HTMLDivElement, 
-                    titleContainerRef: HTMLParagraphElement,
-                    empty: boolean,
-                    marqueeTitleTimeline?: GSAPTimeline) {
+                        borderRef: HTMLDivElement, 
+                        titleContainerRef: HTMLParagraphElement,
+                        empty: boolean,
+                        changeUserContainerRef?: HTMLDivElement,
+                        isRunning?: boolean,
+                        marqueeTitleTimeline?: GSAPTimeline) {
     selectSoftwareAnimation(softwareRef, borderRef, empty);
     setActiveElement(softwareRef);
     setActiveElementType(ActiveElementType.ELEMENT_SOFTWARE_PLACEHOLDER);
@@ -101,6 +107,10 @@ function selectSoftware(softwareRef: HTMLDivElement,
     {
         setActiveElementType(ActiveElementType.ELEMENT_SOFTWARE);
         showElementAnimated(titleContainerRef);
+        if(isRunning)
+        {
+            showElementAnimated(changeUserContainerRef);
+        }
     }
 
     if(marqueeTitleTimeline)
@@ -108,6 +118,7 @@ function selectSoftware(softwareRef: HTMLDivElement,
         showTitleFade(titleContainerRef);
         marqueeTitleTimeline.restart(true);
     }
+
 }
 
 function selectSoftwareAnimation(softwareRef: HTMLDivElement, 
@@ -134,12 +145,13 @@ function showTitleFade(softwareTitleContainer: HTMLDivElement) {
 
 
 function unselectSoftware(softwareRef: HTMLDivElement, 
-                      borderRef: HTMLDivElement, 
-                      titleRef: HTMLParagraphElement,
-                      titleContainerRef: HTMLDivElement,
-                      marqueeTitleTimeline?: GSAPTimeline,
-                      empty?: boolean,
-                      ) {
+                          borderRef: HTMLDivElement, 
+                          titleRef: HTMLParagraphElement,
+                          titleContainerRef: HTMLDivElement,
+                          changeUserContainerRef?: HTMLDivElement,
+                          isRunning?: boolean,
+                          marqueeTitleTimeline?: GSAPTimeline,
+                          empty?: boolean) {
     hideElementAnimated(borderRef);
     if(marqueeTitleTimeline) 
     {
@@ -149,6 +161,10 @@ function unselectSoftware(softwareRef: HTMLDivElement,
     {
         hideSoftwareTitle(titleRef, titleContainerRef);
         hideSoftwareSelectedInnerBorder(softwareRef);
+        if(isRunning && changeUserContainerRef) 
+        {
+            hideElementAnimated(changeUserContainerRef);
+        }
     }
 }
 
@@ -181,7 +197,17 @@ function hideSoftwareSelectedInnerBorder(softwareRef: HTMLDivElement) {
     })
 }
 
-function Software({ coverSrc, softwareTitle = "software_placeholder_title", empty = false }: Props ) {
+function animateSoftwarePlayingProfilePicture(profilePictureRef: HTMLDivElement) {
+    const timeline = gsap.timeline({ repeat: -1, repeatDelay: 0.5, defaults: { duration: 0.6/4 } });
+    timeline    
+        .to(profilePictureRef, { scaleY: 65/70, scaleX: 75/70, translateY: "5px" })
+        .to(profilePictureRef, { scaleY: 75/70, scaleX: 1, translateY: "-10px" })
+        .to(profilePictureRef, { scaleY: 1, translateY: "7px" })
+        .to(profilePictureRef, { scaleX: 75/70, scaleY: 65/70 }, "<")
+        .to(profilePictureRef, { translateY: 0, scale: 1 })
+}
+
+function Software({ coverSrc, softwareTitle = "software_placeholder_title", empty = false, testingComponent=false}: Props) {
     let softwareRef: HTMLDivElement;
     let borderRef: HTMLDivElement;
     let titleContainerRef: HTMLDivElement;
@@ -189,6 +215,14 @@ function Software({ coverSrc, softwareTitle = "software_placeholder_title", empt
     let titleCloneRef: HTMLParagraphElement;
     let titleIsSetuped: boolean = false;
     let marqueeTitleTimeline: GSAPTimeline;
+    let softwareIsPlayingProfilePictureRef: HTMLDivElement;
+    let isRunning:boolean = testingComponent;
+    let changeUserContaienrRef: HTMLDivElement;
+
+    createEffect(() => {
+        animateSoftwarePlayingProfilePicture(softwareIsPlayingProfilePictureRef);
+        console.log(softwareIsPlayingProfilePictureRef);
+    }) 
 
     createEffect(() => {
         if(activeElement() == softwareRef) 
@@ -197,6 +231,8 @@ function Software({ coverSrc, softwareTitle = "software_placeholder_title", empt
                            borderRef, 
                            titleContainerRef,
                            empty,
+                           changeUserContaienrRef,
+                           isRunning,
                            marqueeTitleTimeline);
         } 
         else 
@@ -205,6 +241,8 @@ function Software({ coverSrc, softwareTitle = "software_placeholder_title", empt
                              borderRef, 
                              titleRef, 
                              titleContainerRef, 
+                             changeUserContaienrRef,
+                             isRunning,
                              marqueeTitleTimeline,
                              empty);
         }
@@ -235,6 +273,23 @@ function Software({ coverSrc, softwareTitle = "software_placeholder_title", empt
             </div> }
             <div class="software-selected-inner-border absolute inset-0" />
             <div ref={borderRef} class={ `selected-outer-border ${empty ? "software-selected-outer-border-empty" :"software-selected-outer-border"}` }/>
+             { /* When software is being played this will show */ }
+            <Show when={testingComponent}>
+                <div class="software-playing-container">
+                    <div ref={softwareIsPlayingProfilePictureRef} class="software-playing-active-user">
+                        <Profile customStyle={{height: "66px", width: "66px", "margin-right": 0}} imgSource="/assets/profile_pictures/item_12_2.png" backgroundColor="#fd6a6e" profileName="Yosseuf"/>
+                    </div>
+
+                    <div class="software-playing-text-container">
+                        <p>Playing</p>
+                    </div>
+                </div>
+                <div class="software-change-user-text" ref={changeUserContaienrRef} >
+                    <div class="change-user-button-icon">
+                        <ButtonIcon theme={["#39C4C6", colorSchemeLight.background, "#39C4C6"]} iconContainerStyle={{"margin-left": 0}} text="Change User" letter="Y"/>
+                    </div>
+                </div>
+            </Show>
         </div>
     );
 }

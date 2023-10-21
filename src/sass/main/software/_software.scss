@@ -27,6 +27,7 @@
     transform: translateZ(-1em);
 }
 
+
 .software-title-container {
     position: absolute;
     display: flex;
@@ -102,4 +103,55 @@
     z-index: 600;
     width: 100%;
     aspect-ratio: 1/1;
+}
+
+.software-playing-container {
+    z-index: 10000000;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    bottom: 0;
+    margin-bottom: 15px;
+}
+
+.software-playing-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 65px;
+    background: rgba(0, 0, 0, 0.8);
+    outline: white 3px solid;
+    border-radius: 50px;
+    p {
+        font-weight: bold;
+        color: white;
+        font-size: 25px;
+    }
+}
+
+.software-playing-active-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 13px;
+}
+
+.software-change-user-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: -75px;
+    p {
+        font-size: 25px;
+        font-weight: bolder;
+    }
+}
+
+.change-user-button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

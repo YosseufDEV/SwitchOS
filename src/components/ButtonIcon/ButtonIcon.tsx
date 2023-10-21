@@ -1,64 +1,40 @@
-import { CSSProperties } from "react"
 import { Show } from "solid-js"
 import PlusMinusIcon from "../../../public/assets/icons/ui/PlusMinusIcon.svg"
-import colors from "../colors"
+import { colorSchemeDark, colorSchemeLight } from "../colors";
+
+type ButtonIconCustomTheme = readonly[buttonBackgroundColor: string, letterColor: string, textColor?: string] 
 
 interface Props {
     letter: string,
-    toolTip?: string,
-    background?: boolean,
-    textColor?: string,
-    inStyle?: object,
-    iconStyle?: CSSProperties,
-    toolTipStyle?: CSSProperties,    
-    iconWidth?: string,
-    fontSize?: string,
-    isMinusPlus?: boolean,
-    buttonIconTheme?: ButtonIconTheme,
-    presetClass?: string,
-}
-enum ButtonIconTheme {
-    BUTTON_ICON_LIGHT,
-    BUTTON_ICON_INVERTED
+    text?: string,
+    width?: number,
+    theme: ButtonIconCustomTheme,
+    iconContainerStyle?: any
+    textStyle?: any
 }
 
-function ButtonIcon({ 
-                        scale=1, 
-                        isMinusPlus=false, 
-                        letter="A", 
-                        buttonIconTheme=ButtonIconTheme.BUTTON_ICON_INVERTED, 
-                        toolTip="OK", 
-                        toolTipStyle,
-                        inStyle,
-                        iconStyle,
-                        iconWidth,
-                        fontSize,
-                        }: Props ) {
-    const isLightTheme = buttonIconTheme == ButtonIconTheme.BUTTON_ICON_LIGHT;
-    // TODO : Edit the plus/minus icon to only a plus with a background circle
+const buttonIconTheme: any  = {
+    lightTheme: [colorSchemeLight["ui-secondary"], colorSchemeLight.background] ,
+    darkTheme: [colorSchemeDark["ui-secondary"], colorSchemeDark.background],
+    lightThemeReversedText: [colorSchemeLight["ui-secondary"], colorSchemeLight.background, colorSchemeLight.background] ,
+}
+
+function ButtonIcon({ letter="A", theme=buttonIconTheme.lightTheme, text="OK", width=38, iconContainerStyle, textStyle }: Props ) {
+    const iconColor = theme[0];
+    const iconLetterColor = theme[1];
+    const textColor = theme[2] ? theme[2] : iconColor;
+
     return (
-        <Show when={isMinusPlus} 
-        fallback={
-            <div style={{ scale: scale, ...inStyle }} class="flex items-center justify-center">
-                <div style={{ ...iconStyle, 
-                                 width: iconWidth, 
-                                 height: iconWidth } } 
-                    class={isLightTheme ? "button-icon-light" : "button-icon-inverted"} >
-                    <p style={{ scale: (Number(iconWidth?.slice(0, iconWidth.length-2))/38)}}>{letter}</p>
-                </div>
-                <Show when={toolTip}>
-                    <p style={{ "font-size" : fontSize, ...toolTipStyle}} 
-                       class={isLightTheme ?  "button-tooltip-inverted" : "button-tooltip-light" }>{toolTip}</p>
-                </Show>
+        <div class="flex items-center justify-center">
+            <div class="button-icon" style={{ width: `${width}px`, height: `${width}px`, background: iconColor, ...iconContainerStyle}} >
+                <p style={{ scale: (width/38), color: iconLetterColor }}>{letter}</p>
             </div>
-        }>
-            <PlusMinusIcon class="w-[95px] mr-[5px] ml-[60px] fill-[#2D2D2D]"/* class={presetClass} */ />
-            <p class={isLightTheme ?  "button-tooltip-inverted" : "button-tooltip-light" }>{toolTip}</p>
-        </Show>
+            <p class="button-tooltip" style={{ color: textColor, ...textStyle }}>{text}</p>
+        </div>
     )
 }
 
 export default ButtonIcon
 export {
-    ButtonIconTheme
+    buttonIconTheme
 }

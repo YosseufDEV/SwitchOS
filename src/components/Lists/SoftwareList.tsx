@@ -76,7 +76,7 @@ function SoftwareList() {
 
     return (
         <div ref={softwareListRef} class="software-list"> 
-            <Software softwareTitle="Elden Ring" coverSrc="/assets/covers/elden_ring-cover.avif"/>
+            <Software testingComponent={true} softwareTitle="Elden Ring" coverSrc="/assets/covers/elden_ring-cover.avif"/>
             <Software softwareTitle="Witcher 3: Wild Hunt" coverSrc="/assets/covers/witcher3_cover.avif"/>
             <Software softwareTitle="Final Fantasy XVI" coverSrc="/assets/covers/final_fantasyvi-cover.png" />
             <Software softwareTitle="Nier Automata" coverSrc="/assets/covers/nier_automata-cover.png" />

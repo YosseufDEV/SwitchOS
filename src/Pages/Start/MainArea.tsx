@@ -39,11 +39,10 @@ function MainArea() {
             <div class="continue-button absolute bottom-[90px]">
                 <ButtonIcon 
                             letter="A" 
-                            toolTip="Continue" 
-                            iconWidth="60px"
-                            fontSize={"35px"}
-                            toolTipStyle={{ "letter-spacing": "1px" }}
-                            iconStyle={{ "margin-left": 0, }}
+                            text="Continue" 
+                            width={60}
+                            textStyle={{ "font-size": "35px" }}
+                            iconContainerStyle={{ "margin-left": 0, }}
                 />
             </div>
         </div>

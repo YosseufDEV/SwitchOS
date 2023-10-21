@@ -6,6 +6,7 @@ import { activeElement, ActiveElementType, setActiveElement, setActiveElementTyp
 import { borderAnimation, showElementAnimated, hideElementAnimated } from "../Animations/GeneralAnimations";
 
 interface Props {
+    customStyle: any,
     imgSource: string,
     profileName: string,
     backgroundColor: string,
@@ -31,7 +32,7 @@ function reverseProfileScaleAnimation(profileRef: HTMLDivElement) {
                 }) // 30ms
 }
 
-function Profile({ imgSource, backgroundColor, profileName = "Yosseuf" }: Props ) {
+function Profile({ imgSource, customStyle, backgroundColor, profileName = "Yosseuf" }: Props ) {
     const [active, setActive] = createSignal(false)
     let profileRef: HTMLDivElement;
     let profileNameRef: HTMLParagraphElement;
@@ -66,7 +67,7 @@ function Profile({ imgSource, backgroundColor, profileName = "Yosseuf" }: Props 
     return (
         <div ref={profileRef} class="profile-container">
             <div class="profile" 
-                 style={{ background: backgroundColor }}>
+                 style={{ background: backgroundColor, ...customStyle }}>
                 <img class="profile-picture" src={imgSource}/>
                 <div ref={borderElementRef} class="selected-outer-border profile-selected-outer-border" />
             </div>
