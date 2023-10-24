@@ -99,14 +99,14 @@ function navigateFromOption(optionRef: HTMLDivElement,
     {
         playAudio(determinedNavigationColorAndAudio.audio);
         animateOptionIcon(optionIconType, iconRef); // Animate the icon inside the option itself 
-        navigateFromElementWithAnimation( // Animates the whole option
-                            optionRef, 
-                            iconRef, 
-                            determinedNavigationColorAndAudio.color, 
-                            animationEndCallbackFunc, 
-                            destinationURL, 
-                            activePage()
-                        );
+        // navigateFromElementWithAnimation( // Animates the whole option
+        //                     optionRef, 
+        //                     iconRef, 
+        //                     determinedNavigationColorAndAudio.color, 
+        //                     animationEndCallbackFunc, 
+        //                     destinationURL, 
+        //                     activePage()
+        //                 );
     }
 }
 

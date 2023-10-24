@@ -2,7 +2,7 @@ import { createEffect, createSignal } from "solid-js";
 
 import gsap from "gsap";
 
-import { activeElement, ActiveElementType, activeElementType } from "../../App";
+import { activeElement } from "../../App";
 import Software from "../Software/Software";
 
 const [softwareList, setSoftwareList] = createSignal<HTMLDivElement[]>()
@@ -22,9 +22,6 @@ function getSoftwareInFocus(softwareRef: HTMLDivElement, softwareList: HTMLDivEl
     const isOutOfScreenRightBounds = 1920 - clientRects[0].right < 0;
     const isOutOfScreenLeftBounds = clientRects[0].left < 0;
     
-
-    if(isOutOfScreenLeftBounds === false && isOutOfScreenRightBounds === false) { return };
-
     if(isOutOfScreenRightBounds) 
     {
         currentSoftwareIndexIncrementingPTR = currentSoftwareIndexIncrementing;

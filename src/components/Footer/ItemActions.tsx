@@ -40,7 +40,7 @@ function animateButtonsGuide(selectedElementType: SelectedElement) {
     })
 }
 
-function ButtonsGuide() {
+function ItemActions() {
     const shownButtons = [ ShownButtons.BUTTON_A_START, ShownButtons.BUTTON_PLUS_OPTIONS ];
     createEffect(() => {
         if(activeElement() != null) 
@@ -79,4 +79,4 @@ function ButtonsGuide() {
     )
 }
 
-export default ButtonsGuide;
+export default ItemActions;

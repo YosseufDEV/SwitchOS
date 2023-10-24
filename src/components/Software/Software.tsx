@@ -3,11 +3,11 @@ import { createEffect, Show } from "solid-js"
 import gsap from "gsap"
 import CSSRulePlugin from "gsap/CSSRulePlugin"
 
-import { activeElement, setActiveElement, setActiveElementType, ActiveElementType} from "../../App"
+import { activeElement, ActiveElementType, setActiveElement, setActiveElementType } from "../../App"
 import { hideElementAnimated, showElementAnimated } from "../Animations/GeneralAnimations"
-import Profile from "../Profile/Profile"
 import ButtonIcon from "../ButtonIcon/ButtonIcon"
 import { colorSchemeLight } from "../colors"
+import Profile from "../Profile/Profile"
 
 interface Props {
     coverSrc?: string,
@@ -218,6 +218,7 @@ function Software({ coverSrc, softwareTitle = "software_placeholder_title", empt
     let softwareIsPlayingProfilePictureRef: HTMLDivElement;
     let isRunning:boolean = testingComponent;
     let changeUserContaienrRef: HTMLDivElement;
+    const isTitleOverflowing = softwareTitle.length * 25.92 >= 708;
 
     createEffect(() => {
         animateSoftwarePlayingProfilePicture(softwareIsPlayingProfilePictureRef);
@@ -261,18 +262,18 @@ function Software({ coverSrc, softwareTitle = "software_placeholder_title", empt
     })
 
     return (
-        <div ref={softwareRef} 
-             class={!empty ? "software" : "software software-placeholder" }>
+        <div ref={softwareRef} class={!empty ? "software" : "software software-placeholder" }>
             <Show when={!empty}>
+                <div ref={titleContainerRef} class="software-title-container">
+                    <p ref={titleRef}>{softwareTitle}</p>
+                    { isTitleOverflowing && <p ref={titleCloneRef}>{softwareTitle}</p> }
+                </div>   
                 <img src={coverSrc} class="software-cover"  />
             </Show>
-            { !empty && 
-            <div ref={titleContainerRef} class="software-title-container">
-                <p ref={titleRef}>{softwareTitle}</p>
-                { softwareTitle.length * 25.92 >= 708 && <p ref={titleCloneRef}>{softwareTitle}</p> }
-            </div> }
+
             <div class="software-selected-inner-border absolute inset-0" />
             <div ref={borderRef} class={ `selected-outer-border ${empty ? "software-selected-outer-border-empty" :"software-selected-outer-border"}` }/>
+
              { /* When software is being played this will show */ }
             <Show when={testingComponent}>
                 <div class="software-playing-container">
@@ -284,7 +285,7 @@ function Software({ coverSrc, softwareTitle = "software_placeholder_title", empt
                         <p>Playing</p>
                     </div>
                 </div>
-                <div class="software-change-user-text" ref={changeUserContaienrRef} >
+                <div class="software-change-user-text">
                     <div class="change-user-button-icon">
                         <ButtonIcon theme={["#39C4C6", colorSchemeLight.background, "#39C4C6"]} iconContainerStyle={{"margin-left": 0}} text="Change User" letter="Y"/>
                     </div>
